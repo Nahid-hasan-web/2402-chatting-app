@@ -1,0 +1,48 @@
+.main_From{
+    @apply w-full h-screen bg-[#4CAB72] flex justify-center items-center
+}
+.fromImg_part{
+ @apply w-[1512px] overflow-hidden relative  pt-[30px] pl-[62px] pb-[48px] rounded-[70px]
+}
+.main_From .main_form_inputs{
+    @apply w-[700px] pt-[56px]  pb-[142px] rounded-[50px] bg-[#ffffff4a] backdrop-blur-[7px]
+
+}
+.main_form_inputs .main_form_head  h2{
+    @apply text-[52px] font-bold font-poppins text-[#fff] text-center
+}
+.main_form_inputs .main_form_head p{
+    @apply text-[16px] font-medium mb-[74px] font-poppins text-[#fff] text-center
+}
+.main_form_inputs .main_form_head p a{
+    @apply text-brandColor
+}
+.main_form_input_filds{
+    @apply pl-[66px]
+} 
+.main_form_input_filds label{
+    @apply block text-lg  font-bold font-poppins text-[#fff]
+}
+.main_form_input_filds input{
+    @apply w-[518px] bg-transparent mb-[30px]  outline-none text-lg font-medium font-poppins text-[#fff] border-b-[3px] border-white 
+}
+
+.userButton button {
+    @apply active:scale-[1.1] duration-[.4s] py-[13px] px-[114px] bg-brandColor rounded-[10px] text-[16px] text-center font-semibold font-poppins text-[#696969]
+}
+.main_form_inputs .oterOptions{
+    @apply text-[16px] font-medium font-poppins text-[#FFFFFF] relative text-center my-[30px]  before:w-[200px] before:h-[3px] before:bg-white before:absolute   before:left-[67px] before:top-[50%]
+    after:w-[200px] after:h-[3px] after:bg-white after:absolute   after:right-[67px] after:top-[50%] after:z-[3]
+}
+.otherOptionButtons{
+    @apply flex justify-center gap-[30px]
+}
+.otherOptionButtons button{
+    @apply p-[7px] rounded-[10px] bg-[#fff]
+}
+.otherOptionButtons button img{
+    @apply w-[36px]
+}
+.fromImg_part .leaf{
+    @apply  absolute top-[258px] left-[447px] w-[874px]
+}
