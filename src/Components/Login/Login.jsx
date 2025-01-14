@@ -5,17 +5,13 @@ import google from '../../assets/images/google.png'
 import apple from '../../assets/images/apple.png'
 import leaf from '../../assets/images/leaf.png'
 import { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {  CSSProperties } from "react";
-import { BarLoader } from 'react-spinners'
-const Register = () => {
+const Login = () => {
   // ================== custom varibales 
   const [fromData , setFromData] = useState({name:'' , nameError:'' , email:'',emailError:'',password:'',passwordError:''})
-  const [loding , setLoding] =  useState(false)
+
 
 
   // ================ firebase variables 
-  const auth = getAuth();
 
 
 
@@ -29,22 +25,15 @@ const Register = () => {
       }
       if(!fromData.password){
         setFromData((prev)=>({...prev , passwordError:'!border-red-600'}))
-      }else{
-        setLoding(true)
-        createUserWithEmailAndPassword(auth, fromData.email, fromData.password)
-        .then((userCredential) => {
-          setLoding(false)
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode)
-          if(errorCode == 'auth/email-already-in-use'){
-            alert('email taken')
-          }
-        });
       }
   }
+
+
+
+
+
+
+
 
 
 
@@ -67,22 +56,15 @@ const Register = () => {
                   <input className={`${fromData.nameError}`} onChange={(e)=>{setFromData((prev)=>({...prev , name:e.target.value})),setFromData((prev)=>({...prev , nameError:''}))}} type="text" />
                   {/* ====== Email fild */}
                   <label >Email</label>
-                  <input className={`${fromData.emailError}`} onChange={(e)=>{setFromData((prev)=>({...prev , email:e.target.value })),setFromData((prev)=>({...prev , emailError:''}))}} type="email" />
-              
+                  <input className={`${fromData.emailError}`} onChange={(e)=>{setFromData((prev)=>({...prev , email:e.target.value })),setFromData((prev)=>({...prev , emailError:''}))}} type="text" />
+
                   {/* ====== Password fild */}
                   <label >Password</label>
                   <input className={`${fromData.passwordError}`} onChange={(e)=>{setFromData((prev)=>({...prev , password:e.target.value})),setFromData((prev)=>({...prev , passwordError:''}))}} type="text" />
 
                 </div>
                   <div className=' userButton flex justify-center'>
-                    {
-                      loding?
-                      <button ><BarLoader  color='white' /></button>
-                      :
-                      <button onClick={handelSubmit}>Sign Up</button>
-
-                    }
-
+                  <button onClick={handelSubmit}>Sign Up</button>
                   </div>
                   <p className='oterOptions'>
                   Or Sign Up with 
@@ -101,4 +83,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login
