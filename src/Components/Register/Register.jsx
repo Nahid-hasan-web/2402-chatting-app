@@ -1,18 +1,18 @@
 import './Register.css'
 import formBg from '../../assets/images/fromBg.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import google from '../../assets/images/google.png'
 import apple from '../../assets/images/apple.png'
 import leaf from '../../assets/images/leaf.png'
 import { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, updateProfile, createUserWithEmailAndPassword } from "firebase/auth";
 import {  CSSProperties } from "react";
 import { BarLoader } from 'react-spinners'
 const Register = () => {
   // ================== custom varibales 
   const [fromData , setFromData] = useState({name:'' , nameError:'' , email:'',emailError:'',password:'',passwordError:''})
   const [loding , setLoding] =  useState(false)
-
+  const alu = useNavigate()
 
   // ================ firebase variables 
   const auth = getAuth();
@@ -33,7 +33,18 @@ const Register = () => {
         setLoding(true)
         createUserWithEmailAndPassword(auth, fromData.email, fromData.password)
         .then((userCredential) => {
-          setLoding(false)
+          updateProfile(auth.currentUser, {
+            displayName: fromData.name,
+            photoURL: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
+          }).then(() => {
+            setLoding(false)
+            alu('/login')
+            console.log(userCredential)
+          }).catch((error) => {
+            // An error occurred
+            // ...
+          });
+       
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -58,7 +69,7 @@ const Register = () => {
                 <div className="main_form_head">
                   <h2>Get Started</h2>
                   <p>
-                  Already have an Account ? <Link to={'#'}>Log in</Link>
+                  Already have an Account ? <Link to={'/login'}>Log in</Link>
                   </p>
                 </div>
                 <div className="main_form_input_filds">
